@@ -258,7 +258,7 @@ def acs():
 
     relay_state = request.form.get('RelayState')
     redirect_target = toolkit.url_for(
-        relay_state, _external=True) if relay_state else config.get(
+        relay_state, _external=True) if (relay_state and relay_state != "undefined") else config.get(
             'ckanext.saml2auth.default_fallback_endpoint', 'user.me')
 
     resp = toolkit.redirect_to(redirect_target)
